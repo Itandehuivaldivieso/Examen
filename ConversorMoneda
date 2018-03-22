@@ -22,7 +22,7 @@
 	   
 	   private JTextField cantidad, total;
 	   private JLabel cantidad1, total1,titulo;
-	   
+	   private JButton calcular;
 
 	    /**
 	     * Constructor for objects of class ConversorMoneda
@@ -254,6 +254,18 @@
             restricciones1.fill = GridBagConstraints.BOTH;
             panelCantidad.add(total, restricciones1);
             
+	    //Boton calcular
+            calcular= new JButton("Calcular");
+            restricciones1.gridx=1;
+            restricciones1.gridy=2;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.insets.set(1,1,1,1);
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelCantidad.add(calcular, restricciones1);
+	    
             //Especificaciones del panel 3
             restricciones1.gridx = 0;
             restricciones1.gridy = 2;
@@ -266,29 +278,43 @@
             //restricciones1.insets.set(0,0,1,0);
             contenedorPrincipal.add(panelCantidad, restricciones1);
             
-            pesos.addActionListener(this);
+           pesos.addActionListener(this);
             dolar.addActionListener(this);
             euro.addActionListener(this);
             pesos1.addActionListener(this);
             dolar1.addActionListener(this);
             euro1.addActionListener(this);
-            
-            	            
+            cantidad.addActionListener(this);
+            total.addActionListener(this);
+            calcular.addActionListener(this);
             
             
 	        
 	    }
+	    @Override
+	    
 	    public void actionPerformed(ActionEvent e) {
-	        if(e.getSource()==pesos ) {
-	        	if(e.getSource()==dolar1) {
-	        		
-	        	}
-	        }
+	    	double cantidad1=0;
+	    	if(e.getSource()==calcular) {
+		        if(pesos.isSelected()) {
+		        	if(dolar1.isSelected()) {total.setText(Double.toString( cantidad1 = Double.parseDouble(cantidad.getText())*0.0534));
+		        	}else if(euro1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*0.043));
+		        	}else if(pesos1.isSelected()) {total.setText("Lo siento es lo mismo");}
+		        }else if(dolar.isSelected()) {
+		        	if(pesos1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*18.51));
+		        	}else if(euro1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*0.81));
+		        	}else if(dolar1.isSelected()) {total.setText("Lo siento es lo mismo");}
+		        }else if(euro1.isSelected()) {
+		        	if(pesos1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*22.78));
+		        	}else if(dolar1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*1.22));
+		        	}else if(euro1.isSelected()) {total.setText("Lo siento es lo mismo");}
+		        }
+	    	}
 	    }
 	    public static void main(String[] args) {
 	        // TODO Auto-generated method stub
 	        ConversorMoneda monedita = new ConversorMoneda();
-	        monedita.setSize(2000,3300);
+	        
 	        monedita.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        monedita.pack();
 	        monedita.setLocationRelativeTo(null);
