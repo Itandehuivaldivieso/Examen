@@ -1,0 +1,323 @@
+import java.awt.*;  
+	import javax.swing.*; 
+	import java.awt.event.*;
+	import javax.swing.border.*; import java.awt.Color;
+	/**
+	 * Write a description of class ConversorMoneda here.
+	 * 
+	 * @author (your name) 
+	 * @version (a version number or a date)
+	 */
+	public class ConversorMoneda extends JFrame implements ActionListener
+	{
+	    // Declaración de componentes.
+	   JRadioButton dolar = new JRadioButton("Dolar");
+	   JRadioButton euro = new JRadioButton("Euro");
+	   JRadioButton pesos = new JRadioButton("Pesos");
+	   JRadioButton dolar1 = new JRadioButton("Dolar");
+	   JRadioButton euro1 = new JRadioButton("Euro");
+	   JRadioButton pesos1 = new JRadioButton("Pesos");
+	   
+	   private JTextField cantidad, total;
+	   private JLabel cantidad1, total1,titulo;
+	   private JButton calcular;
+
+	    /**
+	     * Constructor for objects of class ConversorMoneda
+	     */
+	    public ConversorMoneda()
+	    {
+	        super("Conversor de divisas");
+	        setLayout(new GridBagLayout());
+	        GridBagConstraints restricciones1 = new GridBagConstraints();
+	        
+	        Container contenedorPrincipal = this.getContentPane();
+	        contenedorPrincipal.setLayout(new GridBagLayout());
+	        contenedorPrincipal.setBackground(Color.lightGray);
+	        
+	        //panel 1
+	        JPanel panelTitulo = new JPanel();
+	        panelTitulo.setLayout(new GridBagLayout());
+	        
+	        //panel 2
+	        TitledBorder border1 = new TitledBorder("Tipo de moneda");
+	        border1.setTitleJustification(TitledBorder.CENTER);
+	        border1.setTitlePosition(TitledBorder.TOP);
+	        JPanel panelMoneda = new JPanel();
+	        panelMoneda.setBorder(border1);
+	        panelMoneda.setLayout(new GridBagLayout());
+	        
+	        //panel convertir
+	        TitledBorder border1_1 = new TitledBorder("Convertir");
+	        border1_1.setTitleJustification(TitledBorder.CENTER);
+	        border1_1.setTitlePosition(TitledBorder.TOP);
+	        JPanel panelConvertir = new JPanel();
+	        panelConvertir.setBorder(border1_1);
+	        panelConvertir.setLayout(new GridBagLayout());
+	        
+	        //panel a
+	        TitledBorder border1_2 = new TitledBorder("a");
+	        border1_2.setTitleJustification(TitledBorder.CENTER);
+	        border1_2.setTitlePosition(TitledBorder.TOP);
+	        JPanel panelA = new JPanel();
+	        panelA.setBorder(border1_2);
+	        panelA.setLayout(new GridBagLayout());
+	        
+	        //Panel3
+	        TitledBorder border2 = new TitledBorder("Cantidad a convertir");
+	        border2.setTitleJustification(TitledBorder.CENTER);
+	        border2.setTitlePosition(TitledBorder.TOP);
+	        JPanel panelCantidad = new JPanel();
+	        panelCantidad.setBorder(border1);
+	        panelCantidad.setLayout(new GridBagLayout());
+	        
+	        //Panel 1
+	        titulo= new JLabel("Conversor de divisas");
+	        restricciones1.gridx=0;
+            restricciones1.gridy=0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelTitulo.add(titulo, restricciones1);
+	        
+            //Especificaciones del panel 1
+            restricciones1.gridx = 0;
+            restricciones1.gridy = 0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.HORIZONTAL;
+            restricciones1.anchor = GridBagConstraints.NORTH;
+            //restricciones1.insets.set(0,0,1,0);
+            contenedorPrincipal.add(panelTitulo, restricciones1);
+            
+            //Panel 2 
+            //Panel convertir
+            pesos.setMnemonic(KeyEvent.VK_C);
+            pesos.setActionCommand("Pesos");
+            euro.setMnemonic(KeyEvent.VK_C);
+            euro.setActionCommand("Euro");
+            dolar.setMnemonic(KeyEvent.VK_C);
+            dolar.setActionCommand("Dolar");
+            ButtonGroup convertir = new ButtonGroup();
+            convertir.add(pesos);
+            convertir.add(dolar);
+            convertir.add(euro);
+            
+            restricciones1.gridx=0;
+            restricciones1.gridy=0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelConvertir.add(pesos, restricciones1);
+            restricciones1.gridx=0;
+            restricciones1.gridy=1;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelConvertir.add(euro, restricciones1);
+            restricciones1.gridx=0;
+            restricciones1.gridy=2;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelConvertir.add(dolar, restricciones1);
+            
+          //Especificaciones del convertir
+            restricciones1.gridx = 0;
+            restricciones1.gridy = 0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.HORIZONTAL;
+            restricciones1.anchor = GridBagConstraints.NORTH;
+            //restricciones1.insets.set(0,0,1,0);
+            panelMoneda.add(panelConvertir, restricciones1);
+            
+          //Panel a
+            pesos1.setMnemonic(KeyEvent.VK_C);
+            pesos1.setActionCommand("Pesos");
+            euro1.setMnemonic(KeyEvent.VK_C);
+            euro1.setActionCommand("Euro");
+            dolar1.setMnemonic(KeyEvent.VK_C);
+            dolar1.setActionCommand("Dolar");
+            ButtonGroup convertir1 = new ButtonGroup();
+            convertir1.add(pesos1);
+            convertir1.add(dolar1);
+            convertir1.add(euro1);
+            
+            restricciones1.gridx=0;
+            restricciones1.gridy=0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelA.add(pesos1, restricciones1);
+            restricciones1.gridx=0;
+            restricciones1.gridy=1;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelA.add(euro1, restricciones1);
+            restricciones1.gridx=0;
+            restricciones1.gridy=2;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelA.add(dolar1, restricciones1);
+            
+          //Especificaciones del convertir
+            restricciones1.gridx = 2;
+            restricciones1.gridy = 0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.HORIZONTAL;
+            restricciones1.anchor = GridBagConstraints.NORTH;
+            //restricciones1.insets.set(0,0,1,0);
+            panelMoneda.add(panelA, restricciones1);
+            
+          //Especificaciones del panel 2
+            restricciones1.gridx = 0;
+            restricciones1.gridy = 1;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.HORIZONTAL;
+            restricciones1.anchor = GridBagConstraints.NORTH;
+            //restricciones1.insets.set(0,0,1,0);
+            contenedorPrincipal.add(panelMoneda, restricciones1);
+            
+            //Panel 3
+          //Etiqueta y contenedor de Cantidad
+            cantidad1 = new JLabel("Cantidad");
+            restricciones1.gridx=0;
+            restricciones1.gridy=0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.insets.set(1,1,1,1);
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelCantidad.add(cantidad1, restricciones1);
+            
+            cantidad= new JTextField();
+            restricciones1.gridx=1;
+            restricciones1.gridy=0;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.insets.set(1,1,1,1);
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelCantidad.add(cantidad, restricciones1);
+            
+            //Etiqueta y contenedor de puestos vacios
+            total1 = new JLabel("Total");
+            restricciones1.gridx=0;
+            restricciones1.gridy=1;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.insets.set(1,1,1,1);
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelCantidad.add(total1, restricciones1);
+            
+            total = new JTextField();
+            restricciones1.gridx=1;
+            restricciones1.gridy=1;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.insets.set(1,1,1,1);
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelCantidad.add(total, restricciones1);
+            
+            //Boton calcular
+            calcular= new JButton("Calcular");
+            restricciones1.gridx=1;
+            restricciones1.gridy=2;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.insets.set(1,1,1,1);
+            restricciones1.fill = GridBagConstraints.BOTH;
+            panelCantidad.add(calcular, restricciones1);
+            
+            //Especificaciones del panel 3
+            restricciones1.gridx = 0;
+            restricciones1.gridy = 2;
+            restricciones1.gridheight = 1;
+            restricciones1.gridwidth = 1;
+            restricciones1.weightx = 1;
+            restricciones1.weighty = 1;
+            restricciones1.fill = GridBagConstraints.HORIZONTAL;
+            restricciones1.anchor = GridBagConstraints.NORTH;
+            //restricciones1.insets.set(0,0,1,0);
+            contenedorPrincipal.add(panelCantidad, restricciones1);
+            
+            pesos.addActionListener(this);
+            dolar.addActionListener(this);
+            euro.addActionListener(this);
+            pesos1.addActionListener(this);
+            dolar1.addActionListener(this);
+            euro1.addActionListener(this);
+            cantidad.addActionListener(this);
+            total.addActionListener(this);
+            calcular.addActionListener(this);
+            
+            
+	        
+	    }
+	    @Override
+	    
+	    public void actionPerformed(ActionEvent e) {
+	    	double cantidad1=0;
+	    	if(e.getSource()==calcular) {
+		        if(pesos.isSelected()) {
+		        	if(dolar1.isSelected()) {total.setText(Double.toString( cantidad1 = Double.parseDouble(cantidad.getText())*0.0534));
+		        	}else if(euro1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*0.043));
+		        	}else if(pesos1.isSelected()) {total.setText("Lo siento es lo mismo");}
+		        }else if(dolar.isSelected()) {
+		        	if(pesos1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*18.51));
+		        	}else if(euro1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*0.81));
+		        	}else if(dolar1.isSelected()) {total.setText("Lo siento es lo mismo");}
+		        }else if(euro1.isSelected()) {
+		        	if(pesos1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*22.78));
+		        	}else if(dolar1.isSelected()) {total.setText(Double.toString(cantidad1 = Double.parseDouble(cantidad.getText())*1.22));
+		        	}else if(euro1.isSelected()) {total.setText("Lo siento es lo mismo");}
+		        }
+	    	}
+	    }
+	    public static void main(String[] args) {
+	        // TODO Auto-generated method stub
+	        ConversorMoneda monedita = new ConversorMoneda();
+	        monedita.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        monedita.pack();
+	        monedita.setLocationRelativeTo(null);
+	        monedita.setVisible(true);
+	    }
+	    
+	}
+
+
